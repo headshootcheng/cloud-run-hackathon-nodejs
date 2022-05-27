@@ -86,7 +86,7 @@ app.post('/', function (req, res) {
     allowMoveForward = false;
 
 
-  console.log("myDirection",myDirection, "shouldShoot",shouldShoot, "allowMoveForward", allowMoveForward);
+  console.log("myDirection",myDirection, "shouldShoot",shouldShoot, "allowMoveForward", allowMoveForward,"myPosition",myPosition);
   const normalMoves = ["F","R", "F", "L", "F"];
   const limitedMoves = ["R", "L", "R"];
   const moves = allowMoveForward ? normalMoves : limitedMoves;
