@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v1.6' );
+  res.send('Let the battle begin!!!!!!!!! v1.7' );
 });
 // {
 //   "_links": {
@@ -73,7 +73,7 @@ app.post('/', function (req, res) {
       shouldShoot = false;
   }
   console.log("myDirection",myDirection,"shouldShoot",shouldShoot);
-  const moves = ["F","R", "L", "F"];
+  const moves = ["F","R", "F","L", "F"];
   // const moves = ["T", 'L', "T", 'R', "T","F","T"];
   const randomNum = Math.floor(Math.random())* moves.length;
   res.send(shouldShoot? "T" : moves[randomNum]);
