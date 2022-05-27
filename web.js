@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v2' );
+  res.send('Let the battle begin!!!!!!!!! v2.1' );
 });
 // {
 //   "_links": {
@@ -39,6 +39,8 @@ app.post('/', function (req, res) {
   const myLink =  _links?.self?.href ?? "https://cloud-run-hackathon-nodejs-h4njltnl3q-uc.a.run.app/";
   const myPosition = {x: arena.state[myLink].x, y: arena.state[myLink].y};
   const myDirection = arena.state[myLink].direction;
+  const wasHit = arena.state[myLink].wasHit;
+
   const allUserPosition = Object.values(arena.state).map((player)=>({
     x: player.x,
     y: player.y
@@ -86,7 +88,7 @@ app.post('/', function (req, res) {
     allowMoveForward = false;
 
 
-  console.log("myDirection",myDirection, "shouldShoot",shouldShoot, "allowMoveForward", allowMoveForward,"myPosition",myPosition);
+  console.log("myDirection",myDirection, "shouldShoot",shouldShoot, "allowMoveForward", allowMoveForward,"myPosition",myPosition,"wasHit",wasHit);
   const normalMoves = ["F","R", "F", "L", "F"];
   const limitedMoves = ["R", "L", "R"];
   const moves = allowMoveForward ? normalMoves : limitedMoves;
