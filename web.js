@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v1.7' );
+  res.send('Let the battle begin!!!!!!!!! v1.8' );
 });
 // {
 //   "_links": {
@@ -34,8 +34,8 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   const {arena,_links} = req.body;
-  const width = arena?.dims[0]?? 12;
-  const height = arena?.dims[1]?? 9;
+  const width = arena?.dims[0] ?? 12;
+  const height = arena?.dims[1] ?? 9;
   const myLink =  _links?.self?.href ?? "https://cloud-run-hackathon-nodejs-h4njltnl3q-uc.a.run.app/";
   const myPosition = {x: arena.state[myLink].x, y: arena.state[myLink].y};
   const myDirection = arena.state[myLink].direction;
@@ -72,10 +72,25 @@ app.post('/', function (req, res) {
     default:
       shouldShoot = false;
   }
-  console.log("myDirection",myDirection,"shouldShoot",shouldShoot);
-  const moves = ["F","R", "F","L", "F"];
+
+
+  let allowMoveForward = true;
+  if(myPosition.x <= 2 && myDirection === "W")
+    allowMoveForward = false;
+  if(myPosition.x >= width-1 && myDirection === "E")
+    allowMoveForward = false;
+  if(myPosition.y <= 2 && myDirection === "N")
+    allowMoveForward = false;  
+  if(myPosition.y >= height-1 && myDirection === "S")
+    allowMoveForward = false;
+
+
+  console.log("myDirection",myDirection, "shouldShoot",shouldShoot, "allowMoveForward", allowMoveForward);
+  const normalMoves = ["F","R", "F", "L", "F"];
+  const limitedMoves = ["R", "L", "R"];
+  const moves = allowMoveForward ? normalMoves : limitedMoves;
   // const moves = ["T", 'L', "T", 'R', "T","F","T"];
-  const randomNum = Math.floor(Math.random())* moves.length;
+  const randomNum = Math.floor(Math.random()) * moves.length;
   res.send(shouldShoot? "T" : moves[randomNum]);
 });
 
