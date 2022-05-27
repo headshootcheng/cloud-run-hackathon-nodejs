@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v1.1' );
+  res.send('Let the battle begin!!!!!!!!! v1.2' );
 });
 // {
 //   "_links": {
@@ -43,7 +43,6 @@ app.post('/', function (req, res) {
     x: player.x,
     y: player.y
   }))
-  console.log("myDirection",myDirection);
   let shouldShoot = false;
   switch(myDirection){
     case "N":{
@@ -67,12 +66,13 @@ app.post('/', function (req, res) {
         break;
     }
     default:
-      shouldShoot = true;
+      shouldShoot = false;
   }
-  const moves = ["R","L","F"];
+  console.log("myDirection",myDirection,"shouldShoot",shouldShoot);
+  const moves = ["R", "L", "F"];
   // const moves = ["T", 'L', "T", 'R', "T","F","T"];
   const randomNum = Math.floor(Math.random())*moves.length;
-  res.send(shouldShoot? "T" : moves[Math.floor(Math.random() * moves.length)]);
+  res.send(shouldShoot? "T" : moves[randomNum]);
 });
 
 app.listen(process.env.PORT || 8080);
