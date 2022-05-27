@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v1.2' );
+  res.send('Let the battle begin!!!!!!!!! v1.3' );
 });
 // {
 //   "_links": {
@@ -46,21 +46,26 @@ app.post('/', function (req, res) {
   let shouldShoot = false;
   switch(myDirection){
     case "N":{
+      console.log("North Case")
        if(allUserPosition.some((position)=>position.x===myPosition.x && position.y - myPosition.y <=3 &&   position.y > myPosition.y ))
         shouldShoot = true;
         break;
     }
     case "S":{
+      console.log("South Case")
       if(allUserPosition.some((position)=>position.x===myPosition.x && myPosition.y - position.y <=3 &&   position.y <  myPosition.y ))
         shouldShoot = true;
         break;
     }
     case "E": {
+      console.log("East Case")
+
       if(allUserPosition.some((position)=>position.y===myPosition.y &&  position.x - myPosition.x   <=3 &&   position.x >  myPosition.x ))
         shouldShoot = true;
         break;
     }
     case "W": {
+      console.log("West Case")
       if(allUserPosition.some((position)=>position.y === myPosition.y &&  myPosition.x - position.x <=3 && position.x <  myPosition.x ))
         shouldShoot = true;
         break;
