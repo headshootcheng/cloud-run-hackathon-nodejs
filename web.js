@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!! v1.8' );
+  res.send('Let the battle begin!!!!!!!!! v2' );
 });
 // {
 //   "_links": {
@@ -44,28 +44,29 @@ app.post('/', function (req, res) {
     y: player.y
   }))
   let shouldShoot = false;
+  const range = 3;
   switch(myDirection){
     case "S":{
       console.log("South Case")
-       if(allUserPosition.some((position)=>position.x===myPosition.x && (myPosition.y- position.y) <=3 &&   position.y < myPosition.y ))
+       if(allUserPosition.some((position)=>position.x===myPosition.x && (myPosition.y- position.y) < range &&   position.y < myPosition.y ))
         shouldShoot = true;
         break;
     }
     case "N":{
       console.log("North Case")
-      if(allUserPosition.some((position)=>position.x===myPosition.x &&   (position.y - myPosition.y) <=3 &&   position.y >  myPosition.y ))
+      if(allUserPosition.some((position)=>position.x===myPosition.x &&   (position.y - myPosition.y) < range &&   position.y >  myPosition.y ))
         shouldShoot = true;
         break;
     }
     case "W": {
       console.log("West Case")
-      if(allUserPosition.some((position)=>position.y===myPosition.y &&  (myPosition.x - position.x )  <=3 &&   position.x <  myPosition.x ))
+      if(allUserPosition.some((position)=>position.y===myPosition.y &&  (myPosition.x - position.x ) < range &&   position.x <  myPosition.x ))
         shouldShoot = true;
         break;
     }
     case "E": {
       console.log("East Case")
-      if(allUserPosition.some((position)=>position.y === myPosition.y &&   (position.x - myPosition.x)  <=3 && position.x > myPosition.x ))
+      if(allUserPosition.some((position)=>position.y === myPosition.y &&   (position.x - myPosition.x)  <range && position.x > myPosition.x ))
         shouldShoot = true;
         break;
     }
