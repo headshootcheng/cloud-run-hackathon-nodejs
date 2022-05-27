@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('Let the battle begin!!!!!!!!!');
+  res.send('Let the battle begin!!!!!!!!! v1' );
 });
 // {
 //   "_links": {
