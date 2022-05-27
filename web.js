@@ -34,12 +34,13 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   console.log(req.body);
-  const {arena} = req.body;
+  const {arena,_links} = req.body;
   const width = arena?.dims[0]?? 12;
   const height = arena?.dims[1]?? 9;
-  
-  const moves = ["T", 'L', "T", 'R', "T"];
-  const randomNum = Math.floor(Math.random())*4;
+  const myLink =  _links?.self?.href ?? "https://cloud-run-hackathon-nodejs-h4njltnl3q-uc.a.run.app/";
+
+  const moves = ["T", 'L', "T", 'R', "T","F"];
+  const randomNum = Math.floor(Math.random())*moves.length;
   res.send(moves[Math.floor(Math.random() * moves.length)]);
 });
 
