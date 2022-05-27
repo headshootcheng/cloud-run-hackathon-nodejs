@@ -94,7 +94,7 @@ app.post('/', function (req, res) {
   const moves = allowMoveForward ? normalMoves : limitedMoves;
   // const moves = ["T", 'L', "T", 'R', "T","F","T"];
   const randomNum = Math.floor(Math.random()) * moves.length;
-  res.send(!wasHit && shouldShoot? "T" : moves[randomNum]);
+  res.send((!wasHit && shouldShoot)? "T" : moves[randomNum]);
 });
 
 app.listen(process.env.PORT || 8080);
