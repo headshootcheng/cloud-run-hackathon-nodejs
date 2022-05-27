@@ -73,9 +73,9 @@ app.post('/', function (req, res) {
       shouldShoot = false;
   }
   console.log("myDirection",myDirection,"shouldShoot",shouldShoot);
-  const moves = [,"F","R", "L", "F"];
+  const moves = ["F","R", "L", "F"];
   // const moves = ["T", 'L', "T", 'R', "T","F","T"];
-  const randomNum = Math.floor(Math.random())*moves.length;
+  const randomNum = Math.floor(Math.random())* moves.length;
   res.send(shouldShoot? "T" : moves[randomNum]);
 });
 
